@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>CRUD PROGRAM</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+  </head>
+  <body>
+    <!-- navbar -->
+    <nav>
+      <div class="navbar-container">
+        <a href="index.html" class="logo"><i class="fas fa-code"></i> SetiadyCRUD</a>
+        <ul class="navbar-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- login page -->
+    <div id="login-container">
+      <h1>Login</h1>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" placeholder="Enter your username" />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+          />
+        </div>
+        <button type="submit" id="login-btn">Login</button>
+      </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-container">
+        <p>&copy; 2023 setiadyanwar. All rights reserved.</p>
+      </div>
+      <div class="footer-container">
+        <p>Follow us on social media:</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const loginForm = document.getElementById('login-form');
+      const loginBtn = document.getElementById('login-btn');
+
+      loginForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // Ambil nilai input username dan password
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        // Kirim data login ke server
+        fetch('http://example.com/login-endpoint', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ username, password }),
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              // Berhasil login
+              alert('Login successful');
+              // Kirim email
+              sendEmail(username);
+            } else {
+              // Gagal login
+              alert('Login failed');
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+      });
+
+      function sendEmail(username) {
+        // Lakukan logika pengiriman email di sini
+        // Gunakan layanan pihak ketiga atau server-side script untuk mengirim email
+        // Contoh penggunaan EmailJS:
+        // ...
+        // Contoh penggunaan Gmail API:
+        // ...
+      }
+    </script>
+  </body>
+</html>
